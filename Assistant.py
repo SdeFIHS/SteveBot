@@ -37,7 +37,7 @@ def Translate(text: str, from_code: str, to_code: str):
     translatedText = argostranslate.translate.translate(text, from_code, to_code)
     return translatedText
 
-"""
+
 llm = Llama(model_path = "D:\\lodeinfo\\llama-2-7b.Q8_0.gguf",
              n_ctx=128, 
              n_batch=32)
@@ -48,9 +48,8 @@ def getResponse():
 
     #system_message = "You are a helpful assistant"
     user_message = f"""
-    #Q: {input_en}
-#A: """
-""" quitar esta lineaaa
+    Q: {input_en}
+A:"""
     prompt = user_message
 
     output = llm(
@@ -64,7 +63,6 @@ def getResponse():
     outputText_es = Translate(outputText_en, en_code, es_code)
 
     return outputText_es
-"""
     
 def Say(text):
     print(text)
@@ -122,9 +120,12 @@ def ReadCommand():
         port.write(b'U')
     elif command == "steve baila":
         port.write(b'u')
-    #else:
-        #port.write(b'r')
-        #getResponse()
+    elif command == "di que no":
+        Say("No.")
+        port.write(b'n')
+    else:
+        port.write(b'r')
+        getResponse()
 
 
 
